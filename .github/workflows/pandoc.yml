@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      - name: Checkout repository        
+      - name: Checkout repository and submodules        
         uses: actions/checkout@v4
 
       - name: Build custom Pandoc Docker image
         run: |
-          docker build -t custom-pandoc -f Dockerfile
+          docker build -t custom-pandoc -f Dockerfile .
 
       - name: Run Pandoc using custom Docker image
         run: |
