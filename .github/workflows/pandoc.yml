@@ -23,17 +23,7 @@ jobs:
           docker build -t custom-pandoc -f Dockerfile .
 
       - name: Run Pandoc using custom Docker image
-        run: |
-          docker run --rm -v "${{ github.workspace }}:/data" custom-pandoc main.md \
-            -f markdown \
-            -t pdf \
-            -o output/main.pdf \
-            --toc \                       
-            --no-highlight \
-            --template="tex/template.tex" \
-            --pdf-engine=xelatex \
-            --filter pandoc-latex-environment \
-            --lua-filter="filters/filters.lua"
+        run: docker run --rm -v "${{ github.workspace }}:/data" custom-pandoc main.md -f markdown -t pdf -o output/main.pdf --toc --no-highlight --template="tex/template.tex" --pdf-engine=xelatex --filter pandoc-latex-environment --lua-filter="filters/filters.lua
             
 
       - uses: actions/upload-artifact@v4
