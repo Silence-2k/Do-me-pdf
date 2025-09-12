@@ -27,14 +27,14 @@ jobs:
           docker run --rm -v "${{ github.workspace }}:/data" custom-pandoc \
             -f markdown \
             -t pdf \
-            -o /data/output/main.pdf \
+            -o output/main.pdf \
             --toc \                       
             --no-highlight \
-            --template="/data/tex/template.tex" \
+            --template="tex/template.tex" \
             --pdf-engine=xelatex \
             --filter pandoc-latex-environment \
-            --lua-filter="/data/filters/filters.lua" \
-            /data/main.md
+            --lua-filter="filters/filters.lua" \
+            main.md
 
       - uses: actions/upload-artifact@v4
         with:
